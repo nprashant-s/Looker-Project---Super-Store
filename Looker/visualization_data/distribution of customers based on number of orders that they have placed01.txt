@@ -1,0 +1,7 @@
+Customer Lifetime Orders	Count
+Below 1	
+1	75,275
+2	34,520
+3 to 5	30,983
+6 to 9	4,267
+10 or Above	210

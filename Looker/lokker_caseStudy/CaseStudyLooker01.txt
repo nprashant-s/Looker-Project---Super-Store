@@ -1,0 +1,183 @@
+Total Sale Price
+
+	measure: total_sale_price {
+    type: sum
+    value_format_name: usd
+    sql: ${TABLE}.sale_price;;   //  sql: ${sale_price};;
+  }
+---------------------------------------------------------------------------------------------------
+Average Sale Price
+  
+   measure: average_sale_price {
+    type: average
+	value_format_name: usd
+    sql: ${sale_price} ;;
+  }
+  
+  //Measures with Looker aggregations (sum, average, min, max, list types) may not reference other measures.
+  // sql: ${TABLE}.total_sale_price;;
+
+-----------------------------------------------------------------------------------------------------
+Cumulative Total Sales
+
+	measure: cumulative_total_revenue {
+	type: running_total
+	sql: ${total_sale_price} ;;
+}
+------------------------------------------------------------------------------------------------------
+Total Gross Revenue
+
+	measure: total_gross_revenue {
+    type: sum
+	value_format_name: usd
+    sql: ${sale_price} ;;
+    filters: [status: "-Cancelled,-Returned"]
+  }
+
+-------------------------------------------------------------------------------------------------------
+Total Cost  // inventory_items.view
+
+	  measure: total_cost {
+		type: sum
+		sql: ${cost} ;;
+		value_format_name: usd
+	  }
+	  
+	  //order_items.view
+	  
+	measure: total_cost {
+    type: sum
+    sql: ${inventory_items.cost} ;;
+  }
+  
+
+--------------------------------------------------------------------------------------------------------
+Average Cost:  //inventory_items.view
+
+	  measure: average_cost{
+		type: average
+		sql: ${cost} ;;
+		value_format_name: usd
+
+	}
+	  
+	   //order_items.view
+	  
+	measure: average_cost{
+    type: average
+    sql: ${inventory_items.cost} ;;
+    value_format_name: usd
+    
+  }
+---------------------------------------------------------------------------------------------------------
+Total Gross Margin Amount
+Total difference between the total revenue from completed sales and the cost of the goods that were sold
+
+//total_revenue_from_completed_orders
+
+	  measure: total_cost {
+		type: sum
+		sql: ${cost} ;;
+	  }
+	
+    measure: total_gross_margin_amount {
+	type: number
+	value_format_name: usd
+	sql: ${total_gross_revenue}-${inventory_items.total_cost}  ;;
+	  
+	}
+--------------------------------------------------------------------------------------------------------
+Gross Margin %
+
+	  measure: gross_margin_percentage {
+		type: number
+		sql: ${total_gross_margin_amount}/${total_gross_revenue} ;;
+		value_format_name: percent_2
+	  }
+-----------------------------------------------------------------------------------------------------------
+Average Gross Margin
+Average difference between the total revenue from completed sales and the cost of the goods that were sold
+
+//total_revenue_from_completed_orders
+
+
+	  measure: total_cost {
+		type: sum
+		sql: ${cost} ;;
+	  }
+	
+	measure: average_gross_margin {
+	    type: number
+		sql: ${total_gross_revenue} - ${inventory_items.total_cost}  ;;
+		value_format_name:  usd
+	  }
+-----------------------------------------------------------------------------------------------------------
+  Number of Items Returned
+ 
+	measure: number_of_items_returned {
+    type: count
+    filters: [status: "Returned"]
+    
+  }
+-----------------------------------------------------------------------------------------------------------
+Item Return Rate
+Number of Items Returned / total number of items sold
+
+
+  measure:total_items_sold {
+    type: count
+    filters: [status: "Complete"]
+  }
+  
+	measure:  item_return_rate {
+    type: number
+    sql: ${number_of_items_returned}/${total_items_sold}  ;;
+    value_format_name:  usd
+  }
+-----------------------------------------------------------------------------------------------------------
+Average Spend per Customer
+ Total Sale Price / total number of customers
+
+	measure: count_users {
+		type: count_distinct
+		sql: ${user_id}   ;;
+	  }
+	measure: average_spend_per_customer {
+		type: number
+	    value_format_name: usd
+		sql:  ${total_sale_price}/ ${count_users}   ;;
+	  }
+------------------------------------------------------------------------------------------------------------------
+Number of Customers Returning Items
+Number of users who have returned an item at some point
+
+	    measure: number_of_Customers_returning_items {
+	    type: count_distinct
+	    sql:CASE WHEN order_items.status = 'Returned' THEN order_items.user_id  ELSE NULL END  ;;
+	 }
+	 
+	 
+	 SELECT
+    COUNT(DISTINCT CASE WHEN order_items.status = 'Returned' THEN order_items.user_id  ELSE NULL END) AS filtered_order_items_count_users
+FROM `cloud-training-demos.looker_ecomm.order_items`
+     AS order_items
+LIMIT 500
+	 
+-----------------------------------------------------------------------------------------------------------
+% of Users with Returns
+ Number of Customer Returning Items / total number of customers
+
+	measure: count_users {
+		type: count_distinct
+		hidden: yes
+		sql: ${user_id} ;;
+	  }
+	  
+	measure: percentage_of_user_with_returns {
+    type: number
+    sql: ${number_of_Customers_returning_items}/${count_users} ;;
+    value_format_name: percent_2
+  }
+
+-------------------------------------------------------------------------------------------------------------------
+

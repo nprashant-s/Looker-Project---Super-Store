@@ -1,0 +1,7 @@
+Customer Lifetime Orders	Total Lifetime Revenue
+Below 1	
+1	$48.54
+2	$94.37
+3 to 5	$168.71
+6 to 9	$310.24
+10 or Above	$512.13
