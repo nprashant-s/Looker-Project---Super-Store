@@ -10,4 +10,10 @@ Furthermore, Looker's architecture allows for easy integration with other tools 
 In summary,
 Looker and LookML form a powerful duo in the world of business intelligence, offering a user-friendly and scalable solution to explore, model, and analyze data effectively. By leveraging Looker's platform and LookML's modeling language, organizations can make data-driven decisions, gain a competitive edge, and unlock valuable insights to drive success in today's data-rich landscape.
 
-*Note: In Looker casestududies you can find visualizations for the same.
+*Note: In Looker casestududies you can find visualizations images for the same.
+
+-Data_source: This folder containes all the datasets which I used for the casestudy.
+-Looker casestuides: case studies problems and solutions
+-Looker_doc: documentation
+-lookml_view_files: Looker Views(tables) 
+-Visualizations_output_data: Data's which is generated after the execution
