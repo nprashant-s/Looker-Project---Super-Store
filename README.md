@@ -13,7 +13,11 @@ Looker and LookML form a powerful duo in the world of business intelligence, off
 *Note: In Looker casestududies you can find visualizations images for the same.
 
 -Data_source: This folder containes all the datasets which I used for the casestudy.
--Looker casestuides: case studies problems and solutions
--Looker_doc: documentation
--lookml_view_files: Looker Views(tables) 
--Visualizations_output_data: Data's which is generated after the execution
+
+-Looker casestuides: case studies problems and solutions.
+
+-Looker_doc: documentation.
+
+-lookml_view_files: Looker Views(tables).
+
+-Visualizations_output_data: Data's which is generated after the execution.
