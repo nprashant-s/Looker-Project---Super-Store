@@ -1,3 +1,5 @@
+PFA of Certificate: https://github.com/nprashant-s/certificate/blob/main/looker_certificate.jpg
+
 # Looker and LookML
 
 Looker is a robust business intelligence (BI) and data analytics platform that empowers organizations to harness the power of their data and derive meaningful insights. Founded in 2011, Looker gained popularity for its user-friendly interface and ability to connect to a wide range of data sources, including databases, cloud storage, and web applications. By centralizing data from various sources, Looker provides a cohesive view of an organization's data, facilitating data-driven decision-making across departments.
