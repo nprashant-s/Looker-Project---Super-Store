@@ -1,4 +1,5 @@
 PFA of Certificate: https://github.com/nprashant-s/certificate/blob/main/looker_certificate.jpg
+GCP(Partner Cloudskillsboost Profile Link): https://partner.cloudskillsboost.google/public_profiles/ade9fd2b-8559-4c8a-b889-c62b20f7e2e3
 
 # Looker and LookML
 
